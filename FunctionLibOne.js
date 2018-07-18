@@ -18,3 +18,21 @@ export function getPLaylistInfo(){
             })
         .catch(console.error);
 }
+
+export function getPlaylistInfoPromise(){
+    return new Promise((fulfill, reject) => {
+        Youtube.getPlaylist("https://www.youtube.com/watch?v=0qHGEgFucQU&list=LLi4EDAgjULwwNBHOg1aaCig").then(results => {
+            return fulfill(results);
+        }).catch(err => {
+            return reject(error);
+        })
+    });
+}
+
+export function getVideosFromPlaylistPromise(results){
+    return new Promise((fulfill, reject) => {
+        results.getVideos().then(videos => {
+            return fulfill(videos);
+        }).catch(err => reject(err));
+    })
+}
